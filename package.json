@@ -1,0 +1,35 @@
+{
+  "name": "tr8n-express",
+  "description": "tr8n extension for express",
+  "version": "0.0.1",
+  "maintainers": [
+    "Michael Berkovich <michael@translationexchange.com.com>",
+    "Ian McDaniel <ian@translationexchange.com.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/tr8n/tr8n_js_express/issues"
+  },
+  "private": true,
+  "homepage": "https://github.com/tr8n/tr8n_js_express",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tr8n/tr8n_js_express.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "internationalization",
+    "translation",
+    "localization",
+    "translate",
+    "localize",
+    "i18n",
+    "t9n",
+    "tr8n",
+    "l10n",
+    "express"
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "tr8n": "latest"
+  }
+}
