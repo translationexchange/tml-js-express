@@ -12,7 +12,7 @@ var app           = express();
 
 // view engine setup
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));

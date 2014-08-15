@@ -1,0 +1,36 @@
+- tr8n_begin_block({source: "navigation"})
+.navbar.navbar-default.navbar-static-top(role='navigation')
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#')
+        strong Welp
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li
+          a(href='#')!= tr("About Us")
+        li
+          a(href='#')!= tr("Search")
+        li
+          a(href='#')!= tr("Write a Review")
+        li
+          a(href='#')!= tr("Find Friends")
+        li
+          a(href='#')!= tr("Help")
+      ul.nav.navbar-nav.navbar-right
+        li
+          != tr8n_language_selector()
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')!= tr("More {carret}", {carret: '<b class="caret"></b>'})
+          ul.dropdown-menu
+            li.divider
+            li
+              a(href='#')!= tr("Log in")
+            li.divider
+            li
+              a(href='#')!= tr("Sign Up")
+- tr8n_end_block()

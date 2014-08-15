@@ -1,0 +1,11 @@
+{
+  "name": "tr8n-express-ejs-example",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cookie-parser": "~1.0.1",
+    "express": "~4.2.0",
+    "jade": "^1.5.0",
+    "tr8n-redis": "0.0.2"
+  }
+}

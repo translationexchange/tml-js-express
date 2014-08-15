@@ -1,0 +1,92 @@
+include ./includes/header
+
+include ./includes/nav
+
+.container
+  .content
+    .row
+      .col-sm-12
+        .pull-right
+          br
+          a(href='#')
+            != tr("More Cities")
+        h4
+          != tr("Welp {city}", {city: tr("Los Angeles")})
+        hr
+    .row
+      .col-sm-7
+        .well
+          h3.text-primary
+            != tr("The best way to find local businesses")
+          p.text-muted
+            != tr("Search for everything from the city's tastiest burger to the most renowned cardiologist.")
+            != tr("What will you uncover in your neighborhood?")
+          p
+            a.btn.btn-primary(href='#')
+              != tr("Create your free account")
+        h3.text-primary
+          != tr("Best of Welp: {city}", {city: "Los Angeles"})
+        hr
+        small.pull-right
+          a(href='#')!= tr("See More")
+        h5.text-primary!= tr("Restaurants")
+
+        each restaurant, index in restaurants
+          .media
+            a.pull-left(href='#')
+              .media-object.media-img
+              .media-body
+                strong
+                  != (index+1) + "."
+                a(href='')
+                  != restaurant.name
+                .text-muted
+                  img(src='images/'+restaurant.rating+'-stars.png')
+                  != "&nbsp;"
+                  != tr("{count || Review}", {count: restaurant.review_count})
+                .media
+                  a.pull-left(href='#')
+                    .media-object.media-img-sm
+                  .media-body
+                    p!= restaurant.last_comment
+
+      .col-sm-5
+        - tr8n_begin_block({source: "search_form"})
+        form
+          .form-group
+            label
+              small!= tr("Find")
+            input.form-control(type='text', placeholder=trl('tacos, cheap dinner, etc.'))
+            .form-group
+              label
+                small!= tr("Near")
+              input.form-control(type='text', value=trl('Los Angeles'))
+            .form-group
+              button.btn.btn-default.btn-sm(type='submit')!= tr("Search")
+        - tr8n_end_block()
+        hr
+        h4.text-primary!= tr("Review of the day")
+
+        .media
+          a.pull-left(href='#')
+            .media-object.media-img
+          .media-body
+            strong
+              != tr("[link: {user}] reviewed [link: {restaurant}]", {user: {gender: 'female', value: 'Jane Smith'}, link: {href: ''}, restaurant: "Ricky's Fish Tacos"})
+            div
+              img(src='images/1-stars.png', title='5 out of 5 stars')
+              != "&nbsp;"
+              small.text-muted!= tr("{count || Review}", {count: 234})
+            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, architecto, laboriosam doloribus sequi tenetur maxime magni porro sunt facilis officia deserunt blanditiis vitae consectetur rerum alias dolorem et dignissimos...
+              a(href='#')!= tr("Read More")
+
+        hr
+        h4.text-primary
+          != tr("Welp on the go")
+        p
+          != tr("Get the Welp app on your mobile phone. It's free and helps you find great, local businesses on the go!")
+        button.btn.btn-default.btn-sm(type='submit')
+          != tr("Get it free now")
+
+
+include ./includes/footer
