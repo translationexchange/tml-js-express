@@ -6,7 +6,7 @@ test/
 Gruntfile.js
 Jakefile.js
 coverage/
-samples/
+examples/
 tmp/
 doc/
 reports/

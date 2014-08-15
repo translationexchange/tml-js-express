@@ -1,7 +1,7 @@
 {
   "name": "tr8n-express",
   "description": "tr8n extension for express",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "maintainers": [
     "Michael Berkovich <michael@translationexchange.com.com>",
     "Ian McDaniel <ian@translationexchange.com.com>"
