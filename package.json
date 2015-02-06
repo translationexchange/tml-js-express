@@ -1,19 +1,19 @@
 {
-  "name": "tr8n-express",
-  "description": "tr8n extension for express",
+  "name": "tml-express",
+  "description": "Translation Markup Language for Express",
   "version": "0.0.3",
   "maintainers": [
-    "Michael Berkovich <michael@translationexchange.com.com>",
-    "Ian McDaniel <ian@translationexchange.com.com>"
+    "Michael Berkovich <michael@translationexchange.com>",
+    "Ian McDaniel <ian@translationexchange.com>"
   ],
   "bugs": {
-    "url": "https://github.com/tr8n/tr8n_js_express/issues"
+    "url": "https://github.com/translationexchange/tml-express/issues"
   },
   "private": false,
-  "homepage": "https://github.com/tr8n/tr8n_js_express",
+  "homepage": "https://github.com/translationexchange/tml-express",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tr8n/tr8n_js_express.git"
+    "url": "git://github.com/translationexchange/tml-js-express.git"
   },
   "license": "MIT",
   "keywords": [
@@ -26,11 +26,12 @@
     "t9n",
     "tr8n",
     "l10n",
-    "express"
+    "express",
+    "node"
   ],
   "main": "./lib",
   "dependencies": {
-    "tr8n": "latest"
+    "tml-js": "latest"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
