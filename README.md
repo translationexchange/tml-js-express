@@ -2,7 +2,7 @@
   <img src="https://avatars0.githubusercontent.com/u/1316274?v=3&s=200">
 </p>
 
-Tml for JavaScript
+Tml for Node Express
 ===
 
 [![Build Status](https://travis-ci.org/translationexchange/tml-js-express.svg?branch=master)](https://travis-ci.org/translationexchange/tml-js-express)
