@@ -5,8 +5,6 @@
 Tml for Node Express
 ===
 
-[![Build Status](https://travis-ci.org/translationexchange/tml-js-express.svg?branch=master)](https://travis-ci.org/translationexchange/tml-js-express)
-[![Coverage Status](https://coveralls.io/repos/translationexchange/tml-js-express/badge.png?branch=master)](https://coveralls.io/r/translationexchange/tml-js-express?branch=master)
 [![Dependency status](https://david-dm.org/translationexchange/tml-js-express/status.png)](https://david-dm.org/translationexchange/tml-js-express#info=dependencies&view=table) 
 [![Dev Dependency Status](https://david-dm.org/translationexchange/tml-js-express/dev-status.png)](https://david-dm.org/translationexchange/tml-js-express#info=devDependencies&view=table)
 
