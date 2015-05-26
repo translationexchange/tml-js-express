@@ -1,7 +1,11 @@
 {
   "name": "tml-express",
   "description": "Translation Markup Language for Express",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "author": {
+    "name": "Michael Berkovich",
+    "email": "michael@translationexchange.com"
+  },
   "maintainers": [
     "Michael Berkovich <michael@translationexchange.com>",
     "Ian McDaniel <ian@translationexchange.com>"
@@ -13,7 +17,7 @@
   "homepage": "https://github.com/translationexchange/tml-express",
   "repository": {
     "type": "git",
-    "url": "git://github.com/translationexchange/tml-js-express.git"
+    "url": "https://github.com/translationexchange/tml-js-express.git"
   },
   "license": "MIT",
   "keywords": [
