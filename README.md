@@ -13,6 +13,13 @@ Tml for Node Express
 This library provides extensions to TML library for running inside node express frameworks. 
 
 
+Documentation
+==================
+
+Please read about how to setup and use this library at:
+
+http://welcome.translationexchange.com/docs/sdk/node
+
 
 Links
 ==================
