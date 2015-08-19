@@ -18,7 +18,7 @@ Documentation
 
 Please read about how to setup and use this library at:
 
-http://welcome.translationexchange.com/docs/sdk/node
+http://translationexchange.com/docs/sdk/node
 
 
 Links
