@@ -24,7 +24,7 @@ http://welcome.translationexchange.com/docs/sdk/node
 Links
 ==================
 
-* Register on TranslationExchange.com: https://translationexchange.com
+* Register on TranslationExchange.com: http://translationexchange.com
 
 * Follow TranslationExchange on Twitter: https://twitter.com/translationx
 
