@@ -1,20 +1,21 @@
 {
   "name": "tml-express",
   "description": "Translation Markup Language for Express",
-  "version": "0.1.7",
+  "version": "0.3.0",
   "author": {
     "name": "Michael Berkovich",
     "email": "michael@translationexchange.com"
   },
   "maintainers": [
     "Michael Berkovich <michael@translationexchange.com>",
-    "Ian McDaniel <ian@translationexchange.com>"
+    "Ian McDaniel <ian@translationexchange.com>",
+    "Eli Rapoport <eli@translationexchange.com>"
   ],
   "bugs": {
-    "url": "https://github.com/translationexchange/tml-express/issues"
+    "url": "https://github.com/translationexchange/tml-js-express/issues"
   },
   "private": false,
-  "homepage": "https://github.com/translationexchange/tml-express",
+  "homepage": "https://github.com/translationexchange/tml-js-express",
   "repository": {
     "type": "git",
     "url": "https://github.com/translationexchange/tml-js-express.git"
