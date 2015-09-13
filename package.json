@@ -37,7 +37,8 @@
   "main": "./lib",
   "dependencies": {
     "tml-js":               "~0.3.2",
-    "node-jsdom":           "~3.1.5"
+    "node-jsdom":           "~3.1.5",
+    "request":              "~2.61.0"
   },
   "devDependencies": {
     "blanket":              "~1.1.7",
@@ -62,7 +63,6 @@
     "proxyquire":           "~1.7.2",
     "redis":                "~0.12.1",
     "redis-mock":           "~0.4.9",
-    "request":              "~2.61.0",
     "should":               "~4.6.5",
     "travis-cov":           "~0.2.5"
   }
