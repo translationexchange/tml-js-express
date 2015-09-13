@@ -29,51 +29,12 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-var tml         = require('tml-js');
-var tags        = require('./tags');
-var agent       = require('./agent');
-var helpers     = require('./helpers');
-var cache       = require('./cache');
-var logger      = tml.logger;
-var Application = tml.Application;
+var assert = require("assert");
 
-exports.init = function (options) {
-  options = options || {};
-  
-  tml.init(options);
-
-  return function (req, res, next) {
-    if (cache.isInvalidationRequested(req, options))
-      return;
-
-    var t0 = new Date();
-    var app = new Application(options);
-
-    var cookie = helpers.getCookie(req, options.key);
-    // console.log(cookie);
-
-    agent.setup(req, res, app, options);
-    tags.setup(req, res, app, helpers.getCurrentUser(req, options));
-
-    helpers.onFinishRequest(res, app, function() {
-      var t1 = new Date();
-      logger.debug("Request took " + (t1-t0) + " mls");
+describe('Tml Express', function(){
+  describe('creation', function(){
+    it('should correctly run a test', function() {
+      assert.ok(true);
     });
-
-    app.init({
-      current_locale:     helpers.getCurrentLocale(req, res, cookie, options),
-      accepted_locales:   helpers.getAcceptedLocales(req),
-      current_source:     helpers.getCurrentSource(req, options),
-      current_translator: helpers.getCurrentTranslator(cookie)
-    }, function(err) {
-
-      if (err) console.log(err);
-
-      res.locals.tml_application       = app;
-      res.locals.tml_default_language  = app.getLanguage(app.default_locale);
-      res.locals.tml_current_language  = app.getLanguage(app.current_locale);
-
-      next();
-    });
-  };
-};
+  });
+});
