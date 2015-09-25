@@ -1,7 +1,7 @@
 {
   "name": "tml-express",
   "description": "Translation Markup Language for Express",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": {
     "name": "Michael Berkovich",
     "email": "michael@translationexchange.com"
@@ -37,8 +37,7 @@
   "main": "./lib",
   "dependencies": {
     "tml-server":           "~0.4.1",
-    "node-jsdom":           "~3.1.5",
-    "request":              "~2.61.0"
+    "node-jsdom":           "~3.1.5"
   },
   "devDependencies": {
     "blanket":              "~1.1.7",
