@@ -36,7 +36,7 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "tml-server": "~0.4.1",
+    "tml-server": "~0.4.4",
     "node-jsdom": "~3.1.5"
   },
   "devDependencies": {
