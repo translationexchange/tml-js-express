@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'pp'
+
+def package_path
+  './package.json'
+end
+
+def package
+  @package ||= JSON.parse(File.read(package_path))
+end
+
+def version
+  package['version']
+end
+
+def build_number
+  version.split('.').last.to_i
+end
+
+def increment_build_number
+  pp("Incrementing build number to #{build_number + 1}...")
+
+  parts = version.split('.')
+  parts[parts.count-1] = build_number + 1
+  package['version'] = parts.join('.')
+
+  File.open(package_path, 'w') do |file|
+    file.write(JSON.pretty_generate(package))
+  end
+end
+
+def execute(cmd)
+  puts "\n***************************************************************************"
+  puts "$ #{cmd}"
+
+  result = system(cmd)
+  if result == 1
+    pp 'Failed to deploy'
+    exit
+  end
+end
+
+execute("grunt test")
+
+increment_build_number
+
+execute("git add package.json")
+execute("git commit -m 'Incremented build version to #{version}'")
+execute("git push")
+execute("git checkout master")
+execute("git merge develop")
+execute("git tag '#{version}'")
+execute("git push")
+execute("npm publish")
+execute("git checkout develop")
