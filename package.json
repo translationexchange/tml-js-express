@@ -1,7 +1,7 @@
 {
   "name": "tml-express",
   "description": "Translation Markup Language for Express",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "author": {
     "name": "Michael Berkovich",
     "email": "michael@translationexchange.com"
