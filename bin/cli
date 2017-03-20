@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var http = require('http');
+var fs = require('fs');
+var request = require('request');
+var decompress = require('decompress');
+var program = require('commander');
+
+program
+  .version('0.0.1')
+  .option('-k, --key [app_key]', 'Project key, required')
+  .option('-r, --release [release_version]', 'Release version, optional. If not provided, will use the latest.')
+  .option('-p, --path [release_path]', 'Local path to the release. Used for local cache only.')
+  .option('-c, --cache [cache]', 'Shared cache adapter settings in JSON.')
+  .option('-a, --action [action]', 'Cache actions: download, check, reset', 'download')
+  .parse(process.argv);
+
+if (typeof program.key === 'undefined') {
+  console.error('\n  Key must be specified');
+  program.help();
+  process.exit(1);
+}
+
+if (program.action == 'download') {
+  var url = "https://cdn.translationexchange.com/" + program.key + "/version.json";
+  console.log(url);
+
+  request(url, function (error, response, body) {
+    if (error) {
+      console.log('error:', 'Could not download the release version file: ' + error);
+    } else {
+      body = JSON.parse(body);
+      var version = program.release || body.version;
+
+      url = "https://cdn.translationexchange.com/" + program.key + "/" + version + ".tar.gz";
+
+      console.log(url);
+
+      var dist = program.path || "./";
+      var file_path = dist + version + ".tar.gz";
+      var ws = fs.createWriteStream(file_path);
+      ws.on('error', function (err) {
+        console.log(err);
+      });
+
+      request(url).pipe(ws).on('finish', function () {
+        console.log(file_path);
+
+        decompress(file_path, dist + version).then(function (files) {
+          // console.log(files);
+          // console.log('done!');
+          fs.unlink(file_path);
+        });
+      });
+    }
+  });
+} else if (program.action == 'reset' || program.action == 'check') {
+  if (typeof program.cache === 'undefined') {
+    console.error('\n  Cache config must be specified in JSON format');
+    program.help();
+    process.exit(1);
+  }
+
+  // var memcached = require("memcached");
+  // return new memcached(this.config.hosts, this.config.options);
+
+  var config = program.cache;
+  config = JSON.parse(config);
+
+  var key = ['tml'];
+  key.push(config.namespace || '');
+  key.push('v');
+  key.push('current_version');
+  key = key.join('_');
+  var client = null;
+
+  if (config.adapter == 'redis') {
+    var redis = require("redis");
+    client = redis.createClient(config.port, config.host, config.options || {});
+    client.on('connect', function() {
+      client.get(key, function(err, data) {
+        if (data) {
+          data = JSON.parse(data);
+          console.log('\nCurrent version: ' + data.version + ' last updated at: ' + new Date(data.t) + '\n');
+          if (program.action == 'reset') {
+            client.del(key, function () {
+              console.log('The version has been reset');
+              process.exit(0);
+            });
+          }
+        } else {
+          console.log('No version is present in the cache');
+        }
+
+        process.exit(0);
+      });
+    });
+  } else if (config.adapter == 'memcache' || config.adapter == 'memcached') {
+    var memcached = require("memcached");
+    client = new memcached(config.hosts, config.options || {});
+
+    client.get(key, function(err, data) {
+      if (data) {
+        data = JSON.parse(data);
+        console.log('\nCurrent version: ' + data.version + ' last updated at: ' + new Date(data.t) + '\n');
+        if (program.action == 'reset') {
+          console.log('The version has been reset');
+          client.del(key, function () {
+            process.exit(0);
+          });
+        }
+      } else {
+        console.log('No version is present in the cache');
+      }
+
+      process.exit(0);
+    });
+
+  } else {
+    console.log('Unsupported cache client');
+  }
+}
+
+//  bin/cli -a reset -k KEY -c '{"adapter": "redis", "host": "localhost", "port": 6379}'
+//  bin/cli -a reset -k KEY -c '{"adapter": "memcache", "hosts": ["localhost:11211"]}'

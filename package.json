@@ -20,6 +20,9 @@
     "type": "git",
     "url": "https://github.com/translationexchange/tml-js-express.git"
   },
+  "bin": {
+    "tml-express": "./bin/cli"
+  },
   "license": "MIT",
   "keywords": [
     "internationalization",
@@ -36,8 +39,10 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "tml-server": "~0.4.4",
-    "node-jsdom": "~3.1.5"
+    "commander": "~2.9.0",
+    "decompress": "^4.0.0",
+    "node-jsdom": "~3.1.5",
+    "tml-server": "~0.4.4"
   },
   "devDependencies": {
     "blanket": "~1.1.7",
