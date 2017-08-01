@@ -125,4 +125,4 @@ if (program.action == 'download') {
 }
 
 //  bin/cli -a reset -k KEY -c '{"adapter": "redis", "host": "localhost", "port": 6379}'
-//  bin/cli -a reset -k KEY -c '{"adapter": "memcache", "hosts": ["localhost:11211"]}'
+//  bin/cli -a reset -k 81ec0081ab76a408dede88e7597962aa4a84a158e6f862d7d2d4e1ce75fa6a7a -c '{"adapter": "memcache", "hosts": ["localhost:11211"]}'

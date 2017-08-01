@@ -2,42 +2,16 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-blanket');
-  grunt.loadNpmTasks('grunt-coveralls');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-mocha-istanbul');
   grunt.loadNpmTasks('grunt-jsdoc');
+  grunt.loadNpmTasks('grunt-coveralls');
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-
     clean: {
       coverage: {
         src: ['coverage/']
-      }
-    },
-
-    copy: {
-      coverage: {
-        expand: true,
-        cwd: 'test/',
-        src: ['**'],
-        dest: 'coverage/test'
-      },
-      config: {
-        expand: true,
-        cwd: 'config/',
-        src: ['**'],
-        dest: 'coverage/config'
-      }
-    },
-
-    blanket: {
-      coverage: {
-        src: ['lib/'],
-        dest: 'coverage/lib/'
       }
     },
 
@@ -47,29 +21,28 @@ module.exports = function(grunt) {
           reporter: 'spec',
           timeout: 10000
         },
-        src: ['coverage/test/**/*.js']
-      },
-      'html-cov': {
+        src: ['test/**/*.js']
+      }
+    },
+
+    mocha_istanbul: {
+      coverage: {
+        src: 'test', // a folder works nicely
         options: {
-          reporter: 'html-cov',
-          quiet: true,
-          captureFile: 'reports/coverage.html'
-        },
-        src: ['coverage/test/**/*.js']
+          mask: './**/*.js'
+        }
       },
-      'mocha-lcov-reporter': {
+      coveralls: {
+        src: ['test'], // multiple folders also works
         options: {
-          reporter: 'mocha-lcov-reporter',
-          quiet: true,
-          captureFile: 'reports/lcov.info'
-        },
-        src: ['coverage/test/**/*.js']
-      },
-      'travis-cov': {
-        options: {
-          reporter: 'travis-cov'
-        },
-        src: ['coverage/test/**/*.js']
+          coverage:true, // this will make the grunt.event.on('coverage') event listener to be triggered
+          check: {
+            lines: 75,
+            statements: 75
+          },
+          root: './lib', // define where the cover task should consider the root of libraries that are covered by tests
+          reportFormats: ['cobertura', 'lcovonly']
+        }
       }
     },
 
@@ -99,7 +72,7 @@ module.exports = function(grunt) {
 
     jsdoc : {
       dist : {
-        src: ['lib/**/*.js'],
+        src: ['lib/**/**/*.js'],
         options: {
           destination: 'doc'
         }
@@ -108,8 +81,8 @@ module.exports = function(grunt) {
 
     watch: {
       all: {
-        files: ['lib/**/*.js', 'test/**/*.js'],
-        tasks: ['test', 'uglify']
+        files: ['lib/**/**/*.js', 'test/**/**/*.js'],
+        tasks: ['test']
       }
     },
 
@@ -123,9 +96,9 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('test', ['jshint', 'blanket', 'copy', 'mochaTest', 'coveralls']);
+  grunt.registerTask('test', ['clean', 'jshint', 'mochaTest']);
+  grunt.registerTask('coverage', ['clean', 'jshint', 'mocha_istanbul:coverage', 'coveralls']);
   grunt.registerTask('docs', ['jsdoc']);
-  grunt.registerTask('build', ['test']);
-  grunt.registerTask('default', ['test']);
+  grunt.registerTask('default', ['coverage']);
 
 };
